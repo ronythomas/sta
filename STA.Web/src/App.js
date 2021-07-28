@@ -3,28 +3,34 @@ import logo from "./logo.svg";
 import "./App.css";
 import env from "./env";
 import fetch from "node-fetch";
-import http from "http";
-
+import https from "https";
 function App() {
   const [data, setData] = useState(null);
   useEffect(() => {
     if (!data) {
-      const { api } = env();
-      const httpsAgent = new http.Agent({
+      const httpsAgent = new https.Agent({
         rejectUnauthorized: false,
       });
-      fetch(`${api}/test`, { method: "GET", agent: httpsAgent })
+      const { api } = env();
+      fetch("https://localhost:5003/test", {
+        method: "GET",
+        mode: "no-cors",
+        agent: httpsAgent      
+      })
         .then(async (response) => {
           try {
-            if (response.ok) {
-              const txt = await response.text();
-              console.log(txt);
-              setData({ test: true, txt });
-            } else {
-              setData({ api, error: response.statusText });
-            }
+            console.log(response);
+            const txt = await response.text();
+
+            console.log(txt);
+            setData({
+              test: true,
+              txt,
+              statusText: response.statusText,
+              code: response.status,
+            });
           } catch (err) {
-            setData({ api, error: response.statusText });
+            setData({ api, error: err.message });
             console.log(err);
           }
         })

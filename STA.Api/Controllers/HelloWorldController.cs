@@ -56,17 +56,8 @@ namespace STA.Api.Controllers
     [Route("test")]
     public class TestController
     {
-        private readonly ILogger<HelloWorldController> _logger;
-        private readonly OrderDbContext _orderDbContext;
+    [HttpGet]
+    public string Get() => "This is a test";
 
-        public TestController(ILogger<HelloWorldController> logger, OrderDbContext orderDbContext)
-        {
-        }
-        [HttpGet]
-        public async Task<string> Get()
-        {
-            return "This is a test";
-        }
-        
     }
 }

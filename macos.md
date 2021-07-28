@@ -13,7 +13,7 @@ Create file `secrets.json` and insert the following
   "Kestrel": {
     "Certificates": {
       "Default": {
-        "Path": "/root/.aspnet/https/sta.pfx",
+        "Path": "/root/.aspnet/https/sta.pfx",  <---ROOT === your root folder
         "Password": certpassword
       }
     }
