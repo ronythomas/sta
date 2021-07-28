@@ -1,0 +1,4 @@
+{
+    "env": "production",
+    "api": "https://localhost:4430"
+}

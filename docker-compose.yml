@@ -15,18 +15,37 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:
       - ~/.aspnet/https:/https:ro
+  sta.web-develop:
+    container_name: sta-web-develop
+    build:
+      context: .
+      dockerfile: STA.Web/Dockerfile.dev
+    volumes:
+      - ./STA.Web:/app
+      - "/app/node_modules"
+    ports:
+      - 8000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - APP_ENV=develop
+    profiles: 
+      - develop
+  sta.web-staging:
+    container_name: sta-web-staging
+    build:
+      context: .
+      dockerfile: STA.Web/Dockerfile.stage
+    ports:
+      - 8000:80
+    profiles: 
+      - staging
   sta.web:
-    image: ${DOCKER_REGISTRY-}staweb
+    container_name: sta-web
     build:
       context: .
       dockerfile: STA.Web/Dockerfile
     ports:
-      - "8081:80"
-      - "4431:443"
-    environment:      
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=certpassword
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
-      - StaApiEndpoint=https://sta.api/
-    volumes:
-      - ~/.aspnet/https:/https:ro
+      - 8000:80
+    profiles: 
+      - production
+      

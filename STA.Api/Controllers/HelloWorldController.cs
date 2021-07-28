@@ -29,7 +29,7 @@ namespace STA.Api.Controllers
             var setting = await _orderDbContext.Settings.FindAsync("Name");
             return setting?.Value ?? "World";
         }
-
+ 
         [HttpPost]
         public async Task<IActionResult> Post(string name)
         {
@@ -52,5 +52,21 @@ namespace STA.Api.Controllers
 
             return Ok();
         }
+    }
+    [Route("test")]
+    public class TestController
+    {
+        private readonly ILogger<HelloWorldController> _logger;
+        private readonly OrderDbContext _orderDbContext;
+
+        public TestController(ILogger<HelloWorldController> logger, OrderDbContext orderDbContext)
+        {
+        }
+        [HttpGet]
+        public async Task<string> Get()
+        {
+            return "This is a test";
+        }
+        
     }
 }
