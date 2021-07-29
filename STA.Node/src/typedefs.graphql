@@ -1,0 +1,11 @@
+# Just for the query,mutation, subscription roots. If you need to add to these
+# extend query in your module.
+type Query {
+  "Current status of server, should just return 'Online'"
+  status: String!
+}
+
+type Mutation {
+  "Updates Current status of server, should just return 'Online'"
+  updateStatus: String!
+}

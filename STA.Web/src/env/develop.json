@@ -2,5 +2,5 @@
   "env": "develop",
   "api": "https://localhost:4430",
   "sslApi": "https://localhost:5003",
-  "nodeApi": "http://localhost:8811"
+  "nodeApi": "http://localhost:8811/graphql"
 }

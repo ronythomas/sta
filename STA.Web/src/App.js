@@ -3,26 +3,24 @@ import logo from "./logo.svg";
 import "./App.css";
 import env from "./env";
 import fetch from "node-fetch";
-
+const query = `{
+  status
+}`;
 function App() {
-  const [data, setData] = useState();
-  const [sslData, setSslData] = useState();
   const [nodeData, setNodeData] = useState();
   useEffect(() => {
-    const { api, sslApi, nodeApi } = env();
+    const { nodeApi } = env();
     if (!nodeData) {
-      fetch(nodeApi).then(async (res) => {
-        const text = await res.text();
-        console.log(text);
-        setNodeData({ route: nodeApi, text });
-      });
-    }
-
-    if (!data) {
-      fetch(`${sslApi}/test`).then(async (res) => {
-        const text = await res.text();
-        console.log(text);
-        setData({ route: api, text });
+      fetch(nodeApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+      }).then(async (res) => {
+        const json = await res.json();
+        console.log(json);
+        setNodeData({ route: nodeApi, json });
       });
     }
   });
@@ -33,8 +31,6 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>3M</p>
 
-        <code>{data && JSON.stringify(data, null, 2)}</code>
-        <code>{sslData && JSON.stringify(sslData, null, 2)}</code>
         <code>{nodeData && JSON.stringify(nodeData, null, 2)}</code>
       </header>
     </div>

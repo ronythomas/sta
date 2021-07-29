@@ -5,15 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:develop": "nodemon index.js",
-    "start:staging": "APP_ENV=staging node index.js",
-    "start": "APP_ENV=production node index.js"
+    "start:develop": "nodemon src/index.js -e js,graphql",
+    "start:staging": "APP_ENV=staging src/node index.js",
+    "start": "APP_ENV=production node src/index.js"
   },
   "author": "AIM Consulting",
   "license": "UNLICENSED",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "4.17.1"
+    "@graphql-tools/graphql-file-loader": "^7.0.1",
+    "@graphql-tools/load": "^7.0.1",
+    "@graphql-tools/load-files": "^6.3.2",
+    "apollo-server": "3.0.2",
+    "apollo-server-express": "3.0.2",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "graphql": "15.5.1",
+    "graphql-tools": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "2.0.12"

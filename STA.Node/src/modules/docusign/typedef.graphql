@@ -1,0 +1,16 @@
+type DocusignEnvelope {
+  id: String
+  name: String
+}
+
+extend type Query {
+  envelopes: [DocusignEnvelope!]!
+  envelope(id: ID!): DocusignEnvelope!
+}
+
+extend type Mutation {
+  addEnvelope(input: DocusignEnvelopeInput!): DocusignEnvelope!
+}
+input DocusignEnvelopeInput {
+  id: String!
+}
