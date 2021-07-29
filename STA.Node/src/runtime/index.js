@@ -1,10 +1,13 @@
+const path = require("path");
 require("module-alias/register");
+// only require in local mode. If inside container docker will provide the env vars.
+if (process.env.APP_ENV === "local")
+  require("dotenv").config({ path: path.resolve(__dirname, `../../../.env`) });
 
 const { ApolloServer } = require("apollo-server");
 const {
   ApolloServerPluginLandingPageGraphQLPlayground,
 } = require("apollo-server-core");
-const path = require("path");
 const { GraphQLFileLoader } = require("@graphql-tools/graphql-file-loader");
 const { loadSchemaSync } = require("@graphql-tools/load");
 const { mergeResolvers } = require("@graphql-tools/merge");
@@ -24,10 +27,7 @@ const server = new ApolloServer({
   context: ({ req }) => {
     const token = req.headers.authorization || "";
     try {
-      console.log(process.env.DOCUSIGN_KEY);
-      const decoded = jwt.verify(token, "CREATE_JWT_KEY");
-      // Add the user to the context
-      console.log(decoded);
+      const decoded = jwt.verify(token, process.env.JWT_DECODE_KEY);
       return { name: decoded.name };
     } catch (e) {
       return {};
