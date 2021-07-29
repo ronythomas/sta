@@ -1,6 +1,6 @@
 {
   "env": "develop",
-  "api": "http://localhost:5004",
+  "api": "https://localhost:4430",
   "sslApi": "https://localhost:5003",
   "nodeApi": "http://localhost:8811"
 }

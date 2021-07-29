@@ -14,15 +14,15 @@ function App() {
       fetch(nodeApi).then(async (res) => {
         const text = await res.text();
         console.log(text);
-        setNodeData({ text });
+        setNodeData({ route: nodeApi, text });
       });
+    }
 
-      fetch(`${nodeApi}/test`, {
-        method: "post",
-        body: { testing: true },
-      }).then(async (res) => {
-        const text = await res.json();
+    if (!data) {
+      fetch(`${sslApi}/test`).then(async (res) => {
+        const text = await res.text();
         console.log(text);
+        setData({ route: api, text });
       });
     }
   });
@@ -36,7 +36,6 @@ function App() {
         <code>{data && JSON.stringify(data, null, 2)}</code>
         <code>{sslData && JSON.stringify(sslData, null, 2)}</code>
         <code>{nodeData && JSON.stringify(nodeData, null, 2)}</code>
-        <code>{JSON.stringify(env(), null, 2)}</code>
       </header>
     </div>
   );
