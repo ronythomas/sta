@@ -1,4 +1,6 @@
 {
-    "env": "staging",
-    "api": "https://localhost:4430"
+  "env": "staging",
+  "api": "http://localhost:5004",
+  "sslApi": "https://localhost:5003",
+  "nodeApi": "http://localhost:8811"
 }

@@ -1,0 +1,16 @@
+FROM node:14
+# Create app directory
+WORKDIR /node/app
+ENV PATH /node/app/node_modules/.bin:$PATH
+
+COPY STA.Node/package.json ./
+COPY STA.Node/package-lock.json ./
+RUN npm install --silent
+
+# If you are building your code for production
+# RUN npm ci --only=production
+
+COPY STA.Node/. ./
+
+EXPOSE 8080
+CMD [ "npm", "run","start:develop"]

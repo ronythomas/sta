@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using STA.Api.Services;
@@ -9,6 +10,7 @@ using STA.Api.Services;
 namespace STA.Api.Controllers
 {
     [ApiController]
+    [EnableCors]
     [Route("[controller]")]
     public class HelloWorldController : ControllerBase
     {
