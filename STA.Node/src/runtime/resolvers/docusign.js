@@ -1,4 +1,4 @@
-const { docusign } = require("./docusign");
+const { docusign } = require("@services/docusign/docusign");
 
 module.exports = {
   Query: {

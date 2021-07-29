@@ -68,5 +68,8 @@ services:
       - "/node/app/node_modules"
     ports:
       - 8811:3333
+    environment: 
+      - DOCUSIGN_INTEGRATION=${DOCUSIGN_INTEGRATION}
+      - DOCUSIGN_SECRET=${DOCUSIGN_SECRET}
     profiles:
       - develop

@@ -1,0 +1,9 @@
+{
+  "extends": "eslint:recommended",
+  "env": { "node": true, "es6": true, "jest": true },
+  "parserOptions": { "ecmaVersion": 2020 },
+  "rules": {
+    "no-undef": "warn",
+    "no-unused-vars": "warn"
+  }
+}
