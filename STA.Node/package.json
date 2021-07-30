@@ -23,6 +23,7 @@
     "apollo-server-express": "3.0.2",
     "axios": "0.21.1",
     "cors": "2.8.5",
+    "docusign-esign": "^5.11.1",
     "dotenv": "^10.0.0",
     "express": "4.17.1",
     "graphql": "15.5.0",
@@ -35,8 +36,9 @@
     "nodemon": "2.0.12"
   },
   "_moduleAliases": {
-    "@root": ".",
+    "@root": "src",
     "@services": "src/services",
-    "@models": "src/models"
+    "@models": "src/models",
+    "@env": "src/env"
   }
 }

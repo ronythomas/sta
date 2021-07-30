@@ -6,6 +6,7 @@ type DocusignEnvelope {
 extend type Query {
   envelopes: [DocusignEnvelope!]!
   envelope(id: ID!): DocusignEnvelope!
+  docusignAuthUrl: String!
 }
 
 extend type Mutation {

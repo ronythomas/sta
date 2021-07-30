@@ -5,6 +5,7 @@ import env from "./env";
 import fetch from "node-fetch";
 const query = `{
   status
+  docusignAuthUrl
 }`;
 function App() {
   const [nodeData, setNodeData] = useState();
@@ -31,7 +32,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>3M</p>
-
+        {nodeData?.json?.data?.docusignAuthUrl && (
+          <a href={nodeData?.json?.data?.docusignAuthUrl}>Authorize App</a>
+        )}
         <code>{nodeData && JSON.stringify(nodeData, null, 2)}</code>
       </header>
     </div>

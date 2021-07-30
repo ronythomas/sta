@@ -1,7 +1,8 @@
-const { docusign } = require("@services/docusign/docusign");
+const { fetchAuthUrl, docusign } = require("@services/docusign/docusign");
 
 module.exports = {
   Query: {
+    docusignAuthUrl: () => fetchAuthUrl(),
     envelopes: () => [{ test: true }],
   },
   Mutation: {
